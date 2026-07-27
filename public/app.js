@@ -15,7 +15,6 @@
     weatherLabel: document.getElementById("weatherLabel"),
     weatherMeta: document.getElementById("weatherMeta"),
     forecastList: document.getElementById("forecastList"),
-    calendarTitle: document.getElementById("calendarTitle"),
     eventList: document.getElementById("eventList"),
     refreshStatus: document.getElementById("refreshStatus")
   };
@@ -44,7 +43,6 @@
 
   function start() {
     nodes.locationLabel.textContent = config.locationLabel || "Home";
-    nodes.calendarTitle.textContent = (config.calendar && config.calendar.title) || "Upcoming";
     updateClock();
     updateScreenMode();
     requestWakeLock();

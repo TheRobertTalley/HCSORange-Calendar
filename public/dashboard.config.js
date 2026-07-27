@@ -1,5 +1,5 @@
 window.TalleyDashboardConfig = {
-  locationLabel: "HCSO Range",
+  locationLabel: "HCSO Training Center",
   clock: {
     hour12: false
   },
