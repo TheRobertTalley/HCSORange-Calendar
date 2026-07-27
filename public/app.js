@@ -5,6 +5,7 @@
   var weatherLoadedAt = null;
   var calendarLoadedAt = null;
   var wakeLock = null;
+  var fullscreenRequested = false;
 
   var nodes = {
     screen: document.getElementById("screen"),
@@ -58,11 +59,14 @@
     setInterval(pixelShift, 5 * 60 * 1000);
 
     window.addEventListener("keydown", function (event) {
+      requestFullscreen();
       if (event.key.toLowerCase() === "r") {
         refreshWeather();
         refreshCalendar();
       }
     });
+
+    window.addEventListener("pointerup", requestFullscreen);
 
     document.addEventListener("visibilitychange", function () {
       if (document.visibilityState === "visible") {
@@ -279,6 +283,20 @@
       .catch(function () {
         wakeLock = null;
       });
+  }
+
+  function requestFullscreen() {
+    if (!config.screen || !config.screen.enableFullscreen || fullscreenRequested || document.fullscreenElement) {
+      return;
+    }
+    if (!nodes.screen || !nodes.screen.requestFullscreen) {
+      return;
+    }
+
+    fullscreenRequested = true;
+    nodes.screen.requestFullscreen().catch(function () {
+      fullscreenRequested = false;
+    });
   }
 
   function dayName(day, index) {

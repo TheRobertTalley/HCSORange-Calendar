@@ -14,6 +14,7 @@ window.TalleyDashboardConfig = {
     maxEvents: 6
   },
   screen: {
+    enableFullscreen: true,
     enableWakeLock: true,
     enablePixelShift: true,
     dimNightMode: true,
