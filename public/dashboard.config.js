@@ -11,11 +11,13 @@ window.TalleyDashboardConfig = {
     windSpeedUnit: "mph"
   },
   refreshMinutes: 15,
+  pageReloadMinutes: 60,
   calendar: {
     title: "HCSO Training",
     dataUrl: "./calendar-events.json",
     maxEvents: 6,
-    maxEventsPerDay: 2
+    maxEventsPerDay: 3,
+    visibleWeeks: 5
   },
   screen: {
     enableFullscreen: true,

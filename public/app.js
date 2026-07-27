@@ -57,6 +57,7 @@
     setInterval(refreshWeather, Math.max(config.refreshMinutes || 15, 5) * 60 * 1000);
     setInterval(refreshCalendar, Math.max(config.refreshMinutes || 15, 5) * 60 * 1000);
     setInterval(pixelShift, 5 * 60 * 1000);
+    setInterval(reloadPage, Math.max(config.pageReloadMinutes || 60, 15) * 60 * 1000);
 
     window.addEventListener("keydown", function (event) {
       requestFullscreen();
@@ -182,14 +183,13 @@
   function renderCalendar(events) {
     var calendar = config.calendar || {};
     var now = new Date();
-    var monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
-    var monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
-    var firstWeekday = monthStart.getDay();
-    var daysInMonth = monthEnd.getDate();
-    var cellCount = firstWeekday + daysInMonth > 35 ? 42 : 35;
-    var maxEventsPerDay = calendar.maxEventsPerDay || 2;
+    var visibleWeeks = calendar.visibleWeeks || 5;
+    var rangeStart = startOfWorkWeek(now);
+    var rangeEnd = addDays(rangeStart, visibleWeeks * 7 - 3);
+    rangeEnd.setHours(23, 59, 59, 999);
+    var maxEventsPerDay = calendar.maxEventsPerDay || 3;
     var eventsByDay = {};
-    var monthEvents = events
+    var rangeEvents = events
       .map(function (event) {
         return Object.assign({}, event, {
           startDate: new Date(event.start),
@@ -199,72 +199,63 @@
       .filter(function (event) {
         return (
           !Number.isNaN(event.startDate.getTime()) &&
-          event.startDate <= monthEnd &&
-          (!event.endDate || event.endDate >= monthStart)
+          event.startDate <= rangeEnd &&
+          (!event.endDate || event.endDate >= rangeStart)
         );
       })
       .sort(function (left, right) {
         return left.startDate - right.startDate;
       });
 
-    monthEvents.forEach(function (event) {
+    rangeEvents.forEach(function (event) {
       var key = dateKey(event.startDate);
       eventsByDay[key] = eventsByDay[key] || [];
       eventsByDay[key].push(event);
     });
 
     nodes.eventList.innerHTML = "";
-    nodes.calendarTitle.textContent = monthStart.toLocaleDateString([], {
-      month: "long",
-      year: "numeric"
-    });
+    nodes.calendarTitle.textContent = formatDateRange(rangeStart, rangeEnd);
 
-    ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach(function (weekday) {
+    ["Mon", "Tue", "Wed", "Thu", "Fri"].forEach(function (weekday) {
       var label = document.createElement("div");
       label.className = "weekday-label";
       label.textContent = weekday;
       nodes.eventList.appendChild(label);
     });
 
-    for (var index = 0; index < cellCount; index += 1) {
-      var dayNumber = index - firstWeekday + 1;
-      var cell = document.createElement("article");
-      cell.className = "calendar-day";
+    for (var week = 0; week < visibleWeeks; week += 1) {
+      for (var weekday = 0; weekday < 5; weekday += 1) {
+        var date = addDays(rangeStart, week * 7 + weekday);
+        var dayEvents = eventsByDay[dateKey(date)] || [];
+        var hiddenCount = Math.max(dayEvents.length - maxEventsPerDay, 0);
+        var cell = document.createElement("article");
+        cell.className = "calendar-day";
 
-      if (dayNumber < 1 || dayNumber > daysInMonth) {
-        cell.className += " muted-day";
+        if (dateKey(date) === dateKey(now)) {
+          cell.className += " today";
+        }
+
+        cell.innerHTML = '<time class="day-number">' + escapeHtml(formatCalendarDay(date)) + "</time>";
+        dayEvents.slice(0, maxEventsPerDay).forEach(function (event) {
+          var item = document.createElement("p");
+          item.className = "day-event";
+          item.textContent = event.title || "Untitled event";
+          cell.appendChild(item);
+        });
+        if (hiddenCount) {
+          var more = document.createElement("p");
+          more.className = "day-more";
+          more.textContent = "+" + hiddenCount + " more";
+          cell.appendChild(more);
+        }
+
         nodes.eventList.appendChild(cell);
-        continue;
       }
-
-      var date = new Date(now.getFullYear(), now.getMonth(), dayNumber);
-      var dayEvents = eventsByDay[dateKey(date)] || [];
-      var hiddenCount = Math.max(dayEvents.length - maxEventsPerDay, 0);
-
-      if (dateKey(date) === dateKey(now)) {
-        cell.className += " today";
-      }
-
-      cell.innerHTML = '<time class="day-number">' + dayNumber + "</time>";
-      dayEvents.slice(0, maxEventsPerDay).forEach(function (event) {
-        var item = document.createElement("p");
-        item.className = "day-event";
-        item.textContent = event.title || "Untitled event";
-        cell.appendChild(item);
-      });
-      if (hiddenCount) {
-        var more = document.createElement("p");
-        more.className = "day-more";
-        more.textContent = "+" + hiddenCount + " more";
-        cell.appendChild(more);
-      }
-
-      nodes.eventList.appendChild(cell);
     }
 
     nodes.calendarStatus.textContent = calendarLoadedAt
       ? "Updated " + calendarLoadedAt.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
-      : String(monthEvents.length) + " events";
+      : String(rangeEvents.length) + " events";
   }
 
   function formatEventTime(event) {
@@ -286,6 +277,40 @@
     var month = String(date.getMonth() + 1).padStart(2, "0");
     var day = String(date.getDate()).padStart(2, "0");
     return year + "-" + month + "-" + day;
+  }
+
+  function startOfWorkWeek(date) {
+    var start = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    var day = start.getDay();
+    var offset = day === 0 ? -6 : 1 - day;
+    start.setDate(start.getDate() + offset);
+    start.setHours(0, 0, 0, 0);
+    return start;
+  }
+
+  function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
+
+  function formatCalendarDay(date) {
+    return date.toLocaleDateString([], {
+      month: "short",
+      day: "numeric"
+    });
+  }
+
+  function formatDateRange(start, end) {
+    return formatCalendarDay(start) + " - " + end.toLocaleDateString([], {
+      month: "short",
+      day: "numeric",
+      year: "numeric"
+    });
+  }
+
+  function reloadPage() {
+    window.location.reload();
   }
 
   function updateScreenMode() {
