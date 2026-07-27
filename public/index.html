@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#08090b">
     <meta http-equiv="refresh" content="3600">
-    <title>HCSO Training Center Calendar</title>
+    <title>Smart Calendar Display</title>
     <meta
       name="description"
-      content="A public Fire TV smart display with clock, weather, and range calendar."
+      content="A public smart display with clock, weather, and calendar."
     >
-    <link rel="stylesheet" href="./styles.css?v=20260727-recurrence">
+    <link rel="stylesheet" href="./styles.css?v=20260727-dayscroll">
   </head>
   <body>
     <main class="screen" id="screen">
@@ -30,7 +30,7 @@
         <div class="forecast-list" id="forecastList"></div>
       </section>
 
-      <section class="calendar-panel" aria-label="Rolling range work-week calendar">
+      <section class="calendar-panel" aria-label="Rolling work-week calendar">
         <div class="month-grid" id="eventList" role="grid" aria-label="Rolling Monday through Friday calendar"></div>
       </section>
 
@@ -43,7 +43,7 @@
       </footer>
     </main>
 
-    <script src="./dashboard.config.js?v=20260727-recurrence"></script>
-    <script src="./app.js?v=20260727-recurrence"></script>
+    <script src="./dashboard.config.js?v=20260727-dayscroll"></script>
+    <script src="./app.js?v=20260727-dayscroll"></script>
   </body>
 </html>

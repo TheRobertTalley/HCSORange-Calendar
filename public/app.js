@@ -65,6 +65,7 @@
     });
 
     window.addEventListener("pointerup", requestFullscreen);
+    window.addEventListener("resize", scheduleScrollableDays);
 
     document.addEventListener("visibilitychange", function () {
       if (document.visibilityState === "visible") {
@@ -182,7 +183,6 @@
     var rangeStart = startOfWorkWeek(now);
     var rangeEnd = addDays(rangeStart, visibleWeeks * 7 - 3);
     rangeEnd.setHours(23, 59, 59, 999);
-    var maxEventsPerDay = calendar.maxEventsPerDay || 3;
     var eventsByDay = {};
     var rangeEvents = events
       .map(function (event) {
@@ -227,7 +227,6 @@
       for (var weekday = 0; weekday < 5; weekday += 1) {
         var date = addDays(rangeStart, week * 7 + weekday);
         var dayEvents = eventsByDay[dateKey(date)] || [];
-        var hiddenCount = Math.max(dayEvents.length - maxEventsPerDay, 0);
         var cell = document.createElement("article");
         cell.className = "calendar-day";
 
@@ -236,22 +235,25 @@
         }
 
         cell.innerHTML = '<time class="day-number">' + escapeHtml(formatCalendarDay(date)) + "</time>";
-        dayEvents.slice(0, maxEventsPerDay).forEach(function (event) {
+        var eventViewport = document.createElement("div");
+        var eventInner = document.createElement("div");
+        eventViewport.className = "day-events";
+        eventInner.className = "day-events-inner";
+
+        dayEvents.forEach(function (event) {
           var item = document.createElement("p");
           item.className = "day-event";
           item.textContent = event.displayTitle || event.title || "Untitled event";
-          cell.appendChild(item);
+          eventInner.appendChild(item);
         });
-        if (hiddenCount) {
-          var more = document.createElement("p");
-          more.className = "day-more";
-          more.textContent = "+" + hiddenCount + " more";
-          cell.appendChild(more);
-        }
+        eventViewport.appendChild(eventInner);
+        cell.appendChild(eventViewport);
 
         nodes.eventList.appendChild(cell);
       }
     }
+
+    scheduleScrollableDays();
   }
 
   function expandEventDays(event, rangeStart, rangeEnd) {
@@ -290,6 +292,35 @@
 
   function eventPriority(event) {
     return /\bopen\s*(range|mat|matt)\b/i.test(event.title || "") ? 0 : 1;
+  }
+
+  function scheduleScrollableDays() {
+    window.requestAnimationFrame(updateScrollableDays);
+  }
+
+  function updateScrollableDays() {
+    Array.prototype.forEach.call(document.querySelectorAll(".calendar-day"), function (cell, index) {
+      var viewport = cell.querySelector(".day-events");
+      var inner = cell.querySelector(".day-events-inner");
+      if (!viewport || !inner) {
+        return;
+      }
+
+      cell.classList.remove("scrollable");
+      cell.style.removeProperty("--scroll-distance");
+      cell.style.removeProperty("--scroll-duration");
+      cell.style.removeProperty("--scroll-delay");
+
+      var distance = inner.scrollHeight - viewport.clientHeight;
+      if (distance <= 3) {
+        return;
+      }
+
+      cell.classList.add("scrollable");
+      cell.style.setProperty("--scroll-distance", Math.ceil(distance) + "px");
+      cell.style.setProperty("--scroll-duration", Math.min(Math.max(24 + distance / 8, 28), 48) + "s");
+      cell.style.setProperty("--scroll-delay", (index % 5) * 1.2 + "s");
+    });
   }
 
   function formatEventTime(event) {
