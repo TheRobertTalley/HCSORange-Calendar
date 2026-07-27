@@ -16,8 +16,8 @@ window.TalleyDashboardConfig = {
     title: "HCSO Training",
     dataUrl: "./calendar-events.json",
     maxEvents: 6,
-    maxEventsPerDay: 3,
-    visibleWeeks: 5
+    maxEventsPerDay: 4,
+    visibleWeeks: 4
   },
   screen: {
     enableFullscreen: true,
