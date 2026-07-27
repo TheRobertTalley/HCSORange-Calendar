@@ -17,7 +17,7 @@ window.TalleyDashboardConfig = {
     dataUrl: "./calendar-events.json",
     maxEvents: 6,
     maxEventsPerDay: 4,
-    visibleWeeks: 4
+    visibleWeeks: 3
   },
   screen: {
     enableFullscreen: true,
