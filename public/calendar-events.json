@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-27T14:21:03.074Z",
+  "updatedAt": "2026-07-27T16:36:52.884Z",
   "events": [
     {
       "title": "Gainesville City School (Range 1)",
@@ -86,16 +86,16 @@
       "location": ""
     },
     {
-      "title": "GPSTC Alpharetta (Range 2)",
+      "title": "Resiliency Training (LEC)",
       "start": "2026-08-10T00:00:00",
-      "end": "2026-08-13T00:00:00",
+      "end": "2026-08-12T00:00:00",
       "allDay": true,
       "location": ""
     },
     {
-      "title": "Resiliency Training (LEC)",
+      "title": "GPSTC Alpharetta (Range 2)",
       "start": "2026-08-10T00:00:00",
-      "end": "2026-08-12T00:00:00",
+      "end": "2026-08-13T00:00:00",
       "allDay": true,
       "location": ""
     },
