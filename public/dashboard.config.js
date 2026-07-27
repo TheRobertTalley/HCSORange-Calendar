@@ -4,8 +4,9 @@ window.TalleyDashboardConfig = {
     hour12: false
   },
   weather: {
-    latitude: 34.2979,
-    longitude: -83.8241,
+    locationName: "Gainesville, Hall County, GA",
+    latitude: 34.29788,
+    longitude: -83.82407,
     timezone: "America/New_York",
     temperatureUnit: "fahrenheit",
     windSpeedUnit: "mph"
