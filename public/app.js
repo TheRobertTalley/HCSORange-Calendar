@@ -203,9 +203,11 @@
       });
 
     rangeEvents.forEach(function (event) {
-      var key = dateKey(event.startDate);
-      eventsByDay[key] = eventsByDay[key] || [];
-      eventsByDay[key].push(event);
+      expandEventDays(event, rangeStart, rangeEnd).forEach(function (instance) {
+        var key = dateKey(instance.date);
+        eventsByDay[key] = eventsByDay[key] || [];
+        eventsByDay[key].push(instance);
+      });
     });
 
     nodes.eventList.innerHTML = "";
@@ -233,7 +235,7 @@
         dayEvents.slice(0, maxEventsPerDay).forEach(function (event) {
           var item = document.createElement("p");
           item.className = "day-event";
-          item.textContent = event.title || "Untitled event";
+          item.textContent = event.displayTitle || event.title || "Untitled event";
           cell.appendChild(item);
         });
         if (hiddenCount) {
@@ -246,6 +248,36 @@
         nodes.eventList.appendChild(cell);
       }
     }
+  }
+
+  function expandEventDays(event, rangeStart, rangeEnd) {
+    var startDay = startOfDay(event.startDate);
+    var endDay = event.endDate ? eventEndDay(event) : startDay;
+    var totalDays = Math.max(daysBetween(startDay, endDay) + 1, 1);
+    var instances = [];
+
+    for (var day = new Date(startDay); day <= endDay; day = addDays(day, 1)) {
+      if (day < rangeStart || day > rangeEnd || !isWorkday(day)) {
+        continue;
+      }
+
+      var dayNumber = daysBetween(startDay, day) + 1;
+      var title = event.title || "Untitled event";
+      instances.push(Object.assign({}, event, {
+        date: new Date(day),
+        displayTitle: totalDays > 1 ? title + " (Day " + dayNumber + "/" + totalDays + ")" : title
+      }));
+    }
+
+    return instances;
+  }
+
+  function eventEndDay(event) {
+    var endDay = startOfDay(event.endDate);
+    if (event.allDay && event.endDate > event.startDate) {
+      return addDays(endDay, -1);
+    }
+    return endDay;
   }
 
   function formatEventTime(event) {
@@ -276,6 +308,19 @@
     start.setDate(start.getDate() + offset);
     start.setHours(0, 0, 0, 0);
     return start;
+  }
+
+  function startOfDay(date) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  }
+
+  function daysBetween(start, end) {
+    return Math.round((startOfDay(end) - startOfDay(start)) / 86400000);
+  }
+
+  function isWorkday(date) {
+    var day = date.getDay();
+    return day >= 1 && day <= 5;
   }
 
   function addDays(date, days) {
