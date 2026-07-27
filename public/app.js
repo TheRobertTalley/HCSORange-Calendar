@@ -77,9 +77,11 @@
 
   function updateClock() {
     var now = new Date();
+    var clock = config.clock || {};
     nodes.clock.textContent = now.toLocaleTimeString([], {
-      hour: "numeric",
-      minute: "2-digit"
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: clock.hour12 !== undefined ? clock.hour12 : true
     });
     nodes.dateLine.textContent = now.toLocaleDateString([], {
       weekday: "long",
@@ -159,7 +161,6 @@
 
   function refreshCalendar() {
     var calendar = config.calendar || {};
-    nodes.calendarTitle.textContent = calendar.title || "Upcoming";
 
     fetch(calendar.dataUrl || "./calendar-events.json", { cache: "no-store" })
       .then(function (response) {
@@ -174,15 +175,21 @@
       })
       .catch(function () {
         nodes.calendarStatus.textContent = "Calendar unavailable";
-        nodes.eventList.innerHTML = '<li class="empty-event">Waiting for calendar data</li>';
+        nodes.eventList.innerHTML = '<div class="empty-event">Waiting for calendar data</div>';
       });
   }
 
   function renderCalendar(events) {
     var calendar = config.calendar || {};
     var now = new Date();
-    var limit = calendar.maxEvents || 6;
-    var upcoming = events
+    var monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+    var monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
+    var firstWeekday = monthStart.getDay();
+    var daysInMonth = monthEnd.getDate();
+    var cellCount = firstWeekday + daysInMonth > 35 ? 42 : 35;
+    var maxEventsPerDay = calendar.maxEventsPerDay || 2;
+    var eventsByDay = {};
+    var monthEvents = events
       .map(function (event) {
         return Object.assign({}, event, {
           startDate: new Date(event.start),
@@ -190,43 +197,74 @@
         });
       })
       .filter(function (event) {
-        return !Number.isNaN(event.startDate.getTime()) && (!event.endDate || event.endDate >= now);
+        return (
+          !Number.isNaN(event.startDate.getTime()) &&
+          event.startDate <= monthEnd &&
+          (!event.endDate || event.endDate >= monthStart)
+        );
       })
       .sort(function (left, right) {
         return left.startDate - right.startDate;
-      })
-      .slice(0, limit);
+      });
+
+    monthEvents.forEach(function (event) {
+      var key = dateKey(event.startDate);
+      eventsByDay[key] = eventsByDay[key] || [];
+      eventsByDay[key].push(event);
+    });
 
     nodes.eventList.innerHTML = "";
-    if (!upcoming.length) {
-      nodes.calendarStatus.textContent = "No events";
-      nodes.eventList.innerHTML = '<li class="empty-event">Nothing scheduled</li>';
-      return;
-    }
-
-    upcoming.forEach(function (event) {
-      var item = document.createElement("li");
-      item.className = "event-item";
-      item.innerHTML =
-        '<time class="event-date">' + escapeHtml(formatEventDate(event)) + "</time>" +
-        '<div class="event-copy">' +
-        '<strong>' + escapeHtml(event.title || "Untitled event") + "</strong>" +
-        '<span>' + escapeHtml(event.location || formatEventTime(event)) + "</span>" +
-        "</div>";
-      nodes.eventList.appendChild(item);
+    nodes.calendarTitle.textContent = monthStart.toLocaleDateString([], {
+      month: "long",
+      year: "numeric"
     });
+
+    ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach(function (weekday) {
+      var label = document.createElement("div");
+      label.className = "weekday-label";
+      label.textContent = weekday;
+      nodes.eventList.appendChild(label);
+    });
+
+    for (var index = 0; index < cellCount; index += 1) {
+      var dayNumber = index - firstWeekday + 1;
+      var cell = document.createElement("article");
+      cell.className = "calendar-day";
+
+      if (dayNumber < 1 || dayNumber > daysInMonth) {
+        cell.className += " muted-day";
+        nodes.eventList.appendChild(cell);
+        continue;
+      }
+
+      var date = new Date(now.getFullYear(), now.getMonth(), dayNumber);
+      var dayEvents = eventsByDay[dateKey(date)] || [];
+      var hiddenCount = Math.max(dayEvents.length - maxEventsPerDay, 0);
+
+      if (dateKey(date) === dateKey(now)) {
+        cell.className += " today";
+      }
+
+      cell.innerHTML = '<time class="day-number">' + dayNumber + "</time>";
+      dayEvents.slice(0, maxEventsPerDay).forEach(function (event) {
+        var item = document.createElement("p");
+        item.className = "day-event";
+        item.textContent = event.title || "Untitled event";
+        cell.appendChild(item);
+      });
+      if (hiddenCount) {
+        var more = document.createElement("p");
+        more.className = "day-more";
+        more.textContent = "+" + hiddenCount + " more";
+        cell.appendChild(more);
+      }
+
+      nodes.eventList.appendChild(cell);
+    }
 
     nodes.calendarStatus.textContent = calendarLoadedAt
       ? "Updated " + calendarLoadedAt.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
-      : String(upcoming.length) + " events";
-  }
-
-  function formatEventDate(event) {
-    return event.startDate.toLocaleDateString([], {
-      weekday: "short",
-      month: "short",
-      day: "numeric"
-    });
+      : String(monthEvents.length) + " events";
   }
 
   function formatEventTime(event) {
@@ -241,6 +279,13 @@
 
     var end = event.endDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
     return start + " - " + end;
+  }
+
+  function dateKey(date) {
+    var year = date.getFullYear();
+    var month = String(date.getMonth() + 1).padStart(2, "0");
+    var day = String(date.getDate()).padStart(2, "0");
+    return year + "-" + month + "-" + day;
   }
 
   function updateScreenMode() {

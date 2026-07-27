@@ -1,5 +1,8 @@
 window.TalleyDashboardConfig = {
   locationLabel: "HCSO Range",
+  clock: {
+    hour12: false
+  },
   weather: {
     latitude: 34.2979,
     longitude: -83.8241,
@@ -11,7 +14,8 @@ window.TalleyDashboardConfig = {
   calendar: {
     title: "HCSO Training",
     dataUrl: "./calendar-events.json",
-    maxEvents: 6
+    maxEvents: 6,
+    maxEventsPerDay: 2
   },
   screen: {
     enableFullscreen: true,
