@@ -128,11 +128,11 @@
     weatherLoadedAt = new Date();
     nodes.weatherTemp.textContent = Math.round(current.temperature_2m) + unit;
     nodes.weatherLabel.textContent = weatherCodes[current.weather_code] || "Current conditions";
-    nodes.weatherMeta.textContent =
-      "Feels " + Math.round(current.apparent_temperature) + unit +
-      " / Wind " + Math.round(current.wind_speed_10m || 0) + " " + windUnit +
-      " / H " + Math.round(daily.temperature_2m_max[0]) + unit +
-      " L " + Math.round(daily.temperature_2m_min[0]) + unit;
+    nodes.weatherMeta.innerHTML =
+      "<span>Feels " + Math.round(current.apparent_temperature) + unit +
+      " / Wind " + Math.round(current.wind_speed_10m || 0) + " " + windUnit + "</span>" +
+      "<span>High " + Math.round(daily.temperature_2m_max[0]) + unit +
+      " / Low " + Math.round(daily.temperature_2m_min[0]) + unit + "</span>";
 
     nodes.forecastList.innerHTML = "";
     (daily.time || []).slice(0, 5).forEach(function (day, index) {

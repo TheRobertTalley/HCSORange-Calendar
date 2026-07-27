@@ -134,7 +134,7 @@ h1 {
   grid-template-rows: auto minmax(0, 1fr);
   grid-template-areas:
     "summary temp forecast"
-    "meta temp forecast";
+    "meta meta forecast";
   gap: 8px 12px;
 }
 
@@ -331,6 +331,11 @@ h2 {
   font-size: 15px;
   font-weight: 700;
   line-height: 1.2;
+}
+
+.weather-meta span {
+  display: block;
+  white-space: nowrap;
 }
 
 .forecast-list {
