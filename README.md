@@ -2,6 +2,14 @@
 
 A static smart-display page for an Amazon Fire TV, Fire Stick, or wall monitor. The dashboard shows a large clock, current weather, a short forecast, and a rolling Monday-Friday public calendar.
 
+## Buy Me a Root Beer
+
+If this project helped you, donations are optional.
+
+Bitcoin: `bc1q3anz5e7uflnwte4nr5ku836h98dgunwysz203j`
+
+![Bitcoin QR code for root beer donations](public/assets/root-beer-btc-qr.png)
+
 ## Current Display
 
 - 24-hour clock and date
