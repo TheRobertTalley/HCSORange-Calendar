@@ -210,6 +210,10 @@
       });
     });
 
+    Object.keys(eventsByDay).forEach(function (key) {
+      eventsByDay[key].sort(compareDayEvents);
+    });
+
     nodes.eventList.innerHTML = "";
 
     ["Mon", "Tue", "Wed", "Thu", "Fri"].forEach(function (weekday) {
@@ -278,6 +282,14 @@
       return addDays(endDay, -1);
     }
     return endDay;
+  }
+
+  function compareDayEvents(left, right) {
+    return eventPriority(left) - eventPriority(right) || left.startDate - right.startDate;
+  }
+
+  function eventPriority(event) {
+    return /\bopen\s*(range|mat|matt)\b/i.test(event.title || "") ? 0 : 1;
   }
 
   function formatEventTime(event) {
