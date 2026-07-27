@@ -4,6 +4,7 @@
   var config = window.TalleyDashboardConfig || {};
   var weatherLoadedAt = null;
   var calendarLoadedAt = null;
+  var wakeLock = null;
 
   var nodes = {
     screen: document.getElementById("screen"),
@@ -46,6 +47,7 @@
     nodes.locationLabel.textContent = config.locationLabel || "Home";
     updateClock();
     updateScreenMode();
+    requestWakeLock();
     refreshWeather();
     refreshCalendar();
 
@@ -59,6 +61,12 @@
       if (event.key.toLowerCase() === "r") {
         refreshWeather();
         refreshCalendar();
+      }
+    });
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible") {
+        requestWakeLock();
       }
     });
   }
@@ -251,6 +259,26 @@
     var x = Math.round(Math.random() * 8 - 4);
     var y = Math.round(Math.random() * 8 - 4);
     nodes.screen.style.transform = "translate(" + x + "px, " + y + "px)";
+  }
+
+  function requestWakeLock() {
+    if (!config.screen || !config.screen.enableWakeLock || !navigator.wakeLock) {
+      return;
+    }
+    if (wakeLock && !wakeLock.released) {
+      return;
+    }
+
+    navigator.wakeLock.request("screen")
+      .then(function (lock) {
+        wakeLock = lock;
+        wakeLock.addEventListener("release", function () {
+          wakeLock = null;
+        });
+      })
+      .catch(function () {
+        wakeLock = null;
+      });
   }
 
   function dayName(day, index) {
