@@ -3,7 +3,6 @@
 
   var config = window.TalleyDashboardConfig || {};
   var weatherLoadedAt = null;
-  var calendarLoadedAt = null;
   var wakeLock = null;
   var fullscreenRequested = false;
 
@@ -17,7 +16,6 @@
     weatherMeta: document.getElementById("weatherMeta"),
     forecastList: document.getElementById("forecastList"),
     calendarTitle: document.getElementById("calendarTitle"),
-    calendarStatus: document.getElementById("calendarStatus"),
     eventList: document.getElementById("eventList"),
     refreshStatus: document.getElementById("refreshStatus")
   };
@@ -46,6 +44,7 @@
 
   function start() {
     nodes.locationLabel.textContent = config.locationLabel || "Home";
+    nodes.calendarTitle.textContent = (config.calendar && config.calendar.title) || "Upcoming";
     updateClock();
     updateScreenMode();
     requestWakeLock();
@@ -171,11 +170,9 @@
         return response.json();
       })
       .then(function (data) {
-        calendarLoadedAt = new Date(data.updatedAt || Date.now());
         renderCalendar(data.events || []);
       })
       .catch(function () {
-        nodes.calendarStatus.textContent = "Calendar unavailable";
         nodes.eventList.innerHTML = '<div class="empty-event">Waiting for calendar data</div>';
       });
   }
@@ -214,7 +211,6 @@
     });
 
     nodes.eventList.innerHTML = "";
-    nodes.calendarTitle.textContent = formatDateRange(rangeStart, rangeEnd);
 
     ["Mon", "Tue", "Wed", "Thu", "Fri"].forEach(function (weekday) {
       var label = document.createElement("div");
@@ -252,10 +248,6 @@
         nodes.eventList.appendChild(cell);
       }
     }
-
-    nodes.calendarStatus.textContent = calendarLoadedAt
-      ? "Updated " + calendarLoadedAt.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
-      : String(rangeEvents.length) + " events";
   }
 
   function formatEventTime(event) {
@@ -298,14 +290,6 @@
     return date.toLocaleDateString([], {
       month: "short",
       day: "numeric"
-    });
-  }
-
-  function formatDateRange(start, end) {
-    return formatCalendarDay(start) + " - " + end.toLocaleDateString([], {
-      month: "short",
-      day: "numeric",
-      year: "numeric"
     });
   }
 

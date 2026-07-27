@@ -13,7 +13,7 @@ window.TalleyDashboardConfig = {
   refreshMinutes: 15,
   pageReloadMinutes: 60,
   calendar: {
-    title: "HCSO Training",
+    title: "HCSO Training Center",
     dataUrl: "./calendar-events.json",
     maxEvents: 6,
     maxEventsPerDay: 4,
