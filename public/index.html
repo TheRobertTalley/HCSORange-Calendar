@@ -10,7 +10,7 @@
       name="description"
       content="A public Fire TV smart display with clock, weather, and range calendar."
     >
-    <link rel="stylesheet" href="./styles.css?v=20260727-tvfit3wk">
+    <link rel="stylesheet" href="./styles.css?v=20260727-silkcompact">
   </head>
   <body>
     <main class="screen" id="screen">
@@ -21,14 +21,11 @@
       </section>
 
       <section class="weather-panel" aria-label="Weather forecast" aria-live="polite">
-        <div class="current-weather">
-          <div>
-            <p class="panel-label">Weather</p>
-            <h2 id="weatherLabel">Loading forecast</h2>
-          </div>
-          <p class="temperature" id="weatherTemp">--</p>
+        <div class="weather-summary">
+          <p class="panel-label">Weather</p>
+          <h2 id="weatherLabel">Loading forecast</h2>
         </div>
-
+        <p class="temperature" id="weatherTemp">--</p>
         <p class="weather-meta" id="weatherMeta">Connecting to public weather data</p>
         <div class="forecast-list" id="forecastList"></div>
       </section>
@@ -50,7 +47,7 @@
       </footer>
     </main>
 
-    <script src="./dashboard.config.js?v=20260727-tvfit3wk"></script>
-    <script src="./app.js?v=20260727-tvfit3wk"></script>
+    <script src="./dashboard.config.js?v=20260727-silkcompact"></script>
+    <script src="./app.js?v=20260727-silkcompact"></script>
   </body>
 </html>
