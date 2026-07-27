@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#08090b">
+    <title>HCSO Range Calendar</title>
+    <meta
+      name="description"
+      content="A public Fire TV smart display with clock, weather, and range calendar."
+    >
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="screen" id="screen">
+      <section class="clock-panel" aria-label="Current time">
+        <p class="location" id="locationLabel">Home</p>
+        <h1 id="clock">--:--</h1>
+        <p class="date-line" id="dateLine">Loading date</p>
+      </section>
+
+      <section class="weather-panel" aria-label="Weather forecast" aria-live="polite">
+        <div class="current-weather">
+          <div>
+            <p class="panel-label">Weather</p>
+            <h2 id="weatherLabel">Loading forecast</h2>
+          </div>
+          <p class="temperature" id="weatherTemp">--</p>
+        </div>
+
+        <p class="weather-meta" id="weatherMeta">Connecting to public weather data</p>
+        <div class="forecast-list" id="forecastList"></div>
+      </section>
+
+      <section class="calendar-panel" aria-label="Upcoming calendar events">
+        <div class="calendar-heading">
+          <div>
+            <p class="panel-label">Calendar</p>
+            <h2 id="calendarTitle">Upcoming</h2>
+          </div>
+          <p class="calendar-status" id="calendarStatus">Loading</p>
+        </div>
+        <ol class="event-list" id="eventList"></ol>
+      </section>
+
+      <footer class="status-bar">
+        <span id="refreshStatus">Starting dashboard</span>
+        <span>Public display mode</span>
+      </footer>
+    </main>
+
+    <script src="./dashboard.config.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
