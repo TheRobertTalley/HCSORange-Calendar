@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-02T10:58:42.352Z",
+  "updatedAt": "2026-08-02T12:00:28.382Z",
   "events": [
     {
       "title": "Defensive Tactics - Classroom 2",
@@ -100,13 +100,6 @@
       "location": ""
     },
     {
-      "title": "GPSTC Alpharetta (Range 2)",
-      "start": "2026-08-10T00:00:00",
-      "end": "2026-08-13T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
       "title": "Resiliency Training (LEC)",
       "start": "2026-08-10T00:00:00",
       "end": "2026-08-12T00:00:00",
@@ -114,16 +107,16 @@
       "location": ""
     },
     {
-      "title": "Defensive Tactics - Classroom 2",
-      "start": "2026-08-11T00:00:00",
+      "title": "GPSTC Alpharetta (Range 2)",
+      "start": "2026-08-10T00:00:00",
       "end": "2026-08-13T00:00:00",
       "allDay": true,
       "location": ""
     },
     {
-      "title": "FBI SWAT (Range 1 / 270 Steel)",
+      "title": "Defensive Tactics - Classroom 2",
       "start": "2026-08-11T00:00:00",
-      "end": "2026-08-12T00:00:00",
+      "end": "2026-08-13T00:00:00",
       "allDay": true,
       "location": ""
     },
@@ -147,6 +140,13 @@
       "end": "2026-08-12T00:00:00",
       "allDay": true,
       "location": "Hall County Range"
+    },
+    {
+      "title": "FBI SWAT (Range 1 / 270 Steel)",
+      "start": "2026-08-11T00:00:00",
+      "end": "2026-08-12T00:00:00",
+      "allDay": true,
+      "location": ""
     },
     {
       "title": "Less Lethal recert (Classroom 1/range 1)",
@@ -212,6 +212,13 @@
       "location": "Hall County Range"
     },
     {
+      "title": "FBI Firearms (Range 3)",
+      "start": "2026-08-18T00:00:00",
+      "end": "2026-08-19T00:00:00",
+      "allDay": true,
+      "location": ""
+    },
+    {
       "title": "FBI Firearms Instructor Course (Range 3)",
       "start": "2026-08-18T00:00:00",
       "end": "2026-08-19T00:00:00",
@@ -224,13 +231,6 @@
       "end": "2026-08-19T00:00:00",
       "allDay": true,
       "location": "Hall County Range"
-    },
-    {
-      "title": "FBI Firearms (Range 3)",
-      "start": "2026-08-18T00:00:00",
-      "end": "2026-08-19T00:00:00",
-      "allDay": true,
-      "location": ""
     },
     {
       "title": "Force Dynamics (Classroom 1/Range 1)",
@@ -310,18 +310,18 @@
       "location": "Hall County Range"
     },
     {
-      "title": "FBI Firearms (Range 3)",
-      "start": "2026-08-25T00:00:00",
-      "end": "2026-08-27T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
       "title": "FBI Range Day (Range 3)",
       "start": "2026-08-25T00:00:00",
       "end": "2026-08-26T00:00:00",
       "allDay": true,
       "location": "Hall County Range"
+    },
+    {
+      "title": "FBI Firearms (Range 3)",
+      "start": "2026-08-25T00:00:00",
+      "end": "2026-08-27T00:00:00",
+      "allDay": true,
+      "location": ""
     },
     {
       "title": "FBI Firearms Instructor Course (Range 3) & classroom 2",
@@ -632,16 +632,16 @@
       "location": ""
     },
     {
-      "title": "UNG Firearms Instructor (Range 1)",
+      "title": "Low Light Qualifications (Range 1)",
       "start": "2026-09-21T00:00:00",
-      "end": "2026-09-26T00:00:00",
+      "end": "2026-09-25T00:00:00",
       "allDay": true,
       "location": ""
     },
     {
-      "title": "Low Light Qualifications (Range 1)",
+      "title": "UNG Firearms Instructor (Range 1)",
       "start": "2026-09-21T00:00:00",
-      "end": "2026-09-25T00:00:00",
+      "end": "2026-09-26T00:00:00",
       "allDay": true,
       "location": ""
     },
@@ -709,16 +709,16 @@
       "location": ""
     },
     {
-      "title": "GLOCK ORIENTATION FAILURE PATHWAY",
+      "title": "Low Light Qualifications (Range 1)",
       "start": "2026-09-28T00:00:00",
-      "end": "2026-09-30T00:00:00",
+      "end": "2026-10-02T00:00:00",
       "allDay": true,
       "location": ""
     },
     {
-      "title": "Low Light Qualifications (Range 1)",
+      "title": "GLOCK ORIENTATION FAILURE PATHWAY",
       "start": "2026-09-28T00:00:00",
-      "end": "2026-10-02T00:00:00",
+      "end": "2026-09-30T00:00:00",
       "allDay": true,
       "location": ""
     },
