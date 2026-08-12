@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-12T06:50:03.486Z",
+  "updatedAt": "2026-08-12T08:07:49.851Z",
   "events": [
     {
       "title": "Resiliency Training (LEC)",
@@ -23,13 +23,6 @@
       "location": ""
     },
     {
-      "title": "FBI SWAT (Classroom 1)",
-      "start": "2026-08-11T00:00:00",
-      "end": "2026-08-12T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
       "title": "FBI Range Day (Range 3)",
       "start": "2026-08-11T00:00:00",
       "end": "2026-08-12T00:00:00",
@@ -37,11 +30,11 @@
       "location": "Hall County Range"
     },
     {
-      "title": "FBI Firearms Instructor Course (Range 3)",
+      "title": "FBI SWAT (Classroom 1)",
       "start": "2026-08-11T00:00:00",
       "end": "2026-08-12T00:00:00",
       "allDay": true,
-      "location": "Hall County Range"
+      "location": ""
     },
     {
       "title": "FBI SWAT (Range 3 / 270 Steel)",
@@ -49,6 +42,13 @@
       "end": "2026-08-12T00:00:00",
       "allDay": true,
       "location": ""
+    },
+    {
+      "title": "FBI Firearms Instructor Course (Range 3)",
+      "start": "2026-08-11T00:00:00",
+      "end": "2026-08-12T00:00:00",
+      "allDay": true,
+      "location": "Hall County Range"
     },
     {
       "title": "FBI Firearms Instructor Course (Range 3) & classroom 2",
@@ -72,20 +72,6 @@
       "location": ""
     },
     {
-      "title": "Open Mat",
-      "start": "2026-08-14T00:00:00",
-      "end": "2026-08-15T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
-      "title": "Open Range",
-      "start": "2026-08-14T00:00:00",
-      "end": "2026-08-15T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
       "title": "FBI Range Day (Range 3)",
       "start": "2026-08-14T00:00:00",
       "end": "2026-08-15T00:00:00",
@@ -93,11 +79,25 @@
       "location": "Hall County Range"
     },
     {
+      "title": "Open Mat",
+      "start": "2026-08-14T00:00:00",
+      "end": "2026-08-15T00:00:00",
+      "allDay": true,
+      "location": ""
+    },
+    {
       "title": "FBI Firearms Instructor Course (Range 3)",
       "start": "2026-08-14T00:00:00",
       "end": "2026-08-15T00:00:00",
       "allDay": true,
       "location": "Hall County Range"
+    },
+    {
+      "title": "Open Range",
+      "start": "2026-08-14T00:00:00",
+      "end": "2026-08-15T00:00:00",
+      "allDay": true,
+      "location": ""
     },
     {
       "title": "FBI Firearms Instructor Course (Range 3) & classroom 2",
@@ -121,18 +121,18 @@
       "location": ""
     },
     {
-      "title": "FBI Firearms (Range 3)",
-      "start": "2026-08-18T00:00:00",
-      "end": "2026-08-19T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
       "title": "FBI Range Day (Range 3)",
       "start": "2026-08-18T00:00:00",
       "end": "2026-08-19T00:00:00",
       "allDay": true,
       "location": "Hall County Range"
+    },
+    {
+      "title": "FBI Firearms (Range 3)",
+      "start": "2026-08-18T00:00:00",
+      "end": "2026-08-19T00:00:00",
+      "allDay": true,
+      "location": ""
     },
     {
       "title": "FBI Firearms Instructor Course (Range 3)",
@@ -163,20 +163,6 @@
       "location": ""
     },
     {
-      "title": "Open Mat",
-      "start": "2026-08-21T00:00:00",
-      "end": "2026-08-22T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
-      "title": "Open Range",
-      "start": "2026-08-21T00:00:00",
-      "end": "2026-08-22T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
       "title": "FBI Range Day (Range 3)",
       "start": "2026-08-21T00:00:00",
       "end": "2026-08-22T00:00:00",
@@ -184,11 +170,25 @@
       "location": "Hall County Range"
     },
     {
+      "title": "Open Mat",
+      "start": "2026-08-21T00:00:00",
+      "end": "2026-08-22T00:00:00",
+      "allDay": true,
+      "location": ""
+    },
+    {
       "title": "FBI Firearms Instructor Course (Range 3)",
       "start": "2026-08-21T00:00:00",
       "end": "2026-08-22T00:00:00",
       "allDay": true,
       "location": "Hall County Range"
+    },
+    {
+      "title": "Open Range",
+      "start": "2026-08-21T00:00:00",
+      "end": "2026-08-22T00:00:00",
+      "allDay": true,
+      "location": ""
     },
     {
       "title": "FBI Firearms Instructor Course (Range 3) & classroom 2",
@@ -212,18 +212,18 @@
       "location": ""
     },
     {
-      "title": "FBI Firearms (Range 3)",
-      "start": "2026-08-25T00:00:00",
-      "end": "2026-08-27T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
       "title": "FBI Range Day (Range 3)",
       "start": "2026-08-25T00:00:00",
       "end": "2026-08-26T00:00:00",
       "allDay": true,
       "location": "Hall County Range"
+    },
+    {
+      "title": "FBI Firearms (Range 3)",
+      "start": "2026-08-25T00:00:00",
+      "end": "2026-08-27T00:00:00",
+      "allDay": true,
+      "location": ""
     },
     {
       "title": "FBI Firearms Instructor Course (Range 3)",
@@ -240,20 +240,6 @@
       "location": "Hall County Range"
     },
     {
-      "title": "Open Mat",
-      "start": "2026-08-28T00:00:00",
-      "end": "2026-08-29T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
-      "title": "Open Range",
-      "start": "2026-08-28T00:00:00",
-      "end": "2026-08-29T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
       "title": "FBI Range Day (Range 3)",
       "start": "2026-08-28T00:00:00",
       "end": "2026-08-29T00:00:00",
@@ -261,11 +247,25 @@
       "location": "Hall County Range"
     },
     {
+      "title": "Open Mat",
+      "start": "2026-08-28T00:00:00",
+      "end": "2026-08-29T00:00:00",
+      "allDay": true,
+      "location": ""
+    },
+    {
       "title": "FBI Firearms Instructor Course (Range 3)",
       "start": "2026-08-28T00:00:00",
       "end": "2026-08-29T00:00:00",
       "allDay": true,
       "location": "Hall County Range"
+    },
+    {
+      "title": "Open Range",
+      "start": "2026-08-28T00:00:00",
+      "end": "2026-08-29T00:00:00",
+      "allDay": true,
+      "location": ""
     },
     {
       "title": "FBI Firearms Instructor Course (Range 3) & classroom 2",
@@ -317,20 +317,6 @@
       "location": "Hall County Range"
     },
     {
-      "title": "Open Mat",
-      "start": "2026-09-04T00:00:00",
-      "end": "2026-09-05T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
-      "title": "Open Range",
-      "start": "2026-09-04T00:00:00",
-      "end": "2026-09-05T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
       "title": "FBI Range Day (Range 3)",
       "start": "2026-09-04T00:00:00",
       "end": "2026-09-05T00:00:00",
@@ -338,11 +324,25 @@
       "location": "Hall County Range"
     },
     {
+      "title": "Open Mat",
+      "start": "2026-09-04T00:00:00",
+      "end": "2026-09-05T00:00:00",
+      "allDay": true,
+      "location": ""
+    },
+    {
       "title": "FBI Firearms Instructor Course (Range 3)",
       "start": "2026-09-04T00:00:00",
       "end": "2026-09-05T00:00:00",
       "allDay": true,
       "location": "Hall County Range"
+    },
+    {
+      "title": "Open Range",
+      "start": "2026-09-04T00:00:00",
+      "end": "2026-09-05T00:00:00",
+      "allDay": true,
+      "location": ""
     },
     {
       "title": "FBI Firearms Instructor Course (Range 3) & classroom 2",
@@ -408,20 +408,6 @@
       "location": ""
     },
     {
-      "title": "Open Mat",
-      "start": "2026-09-11T00:00:00",
-      "end": "2026-09-12T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
-      "title": "Open Range",
-      "start": "2026-09-11T00:00:00",
-      "end": "2026-09-12T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
       "title": "FBI Range Day (Range 3)",
       "start": "2026-09-11T00:00:00",
       "end": "2026-09-12T00:00:00",
@@ -429,11 +415,25 @@
       "location": "Hall County Range"
     },
     {
+      "title": "Open Mat",
+      "start": "2026-09-11T00:00:00",
+      "end": "2026-09-12T00:00:00",
+      "allDay": true,
+      "location": ""
+    },
+    {
       "title": "FBI Firearms Instructor Course (Range 3)",
       "start": "2026-09-11T00:00:00",
       "end": "2026-09-12T00:00:00",
       "allDay": true,
       "location": "Hall County Range"
+    },
+    {
+      "title": "Open Range",
+      "start": "2026-09-11T00:00:00",
+      "end": "2026-09-12T00:00:00",
+      "allDay": true,
+      "location": ""
     },
     {
       "title": "FBI Firearms Instructor Course (Range 3) & classroom 2",
@@ -513,20 +513,6 @@
       "location": ""
     },
     {
-      "title": "Open Mat",
-      "start": "2026-09-18T00:00:00",
-      "end": "2026-09-19T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
-      "title": "Open Range",
-      "start": "2026-09-18T00:00:00",
-      "end": "2026-09-19T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
       "title": "FBI Range Day (Range 3)",
       "start": "2026-09-18T00:00:00",
       "end": "2026-09-19T00:00:00",
@@ -534,11 +520,25 @@
       "location": "Hall County Range"
     },
     {
+      "title": "Open Mat",
+      "start": "2026-09-18T00:00:00",
+      "end": "2026-09-19T00:00:00",
+      "allDay": true,
+      "location": ""
+    },
+    {
       "title": "FBI Firearms Instructor Course (Range 3)",
       "start": "2026-09-18T00:00:00",
       "end": "2026-09-19T00:00:00",
       "allDay": true,
       "location": "Hall County Range"
+    },
+    {
+      "title": "Open Range",
+      "start": "2026-09-18T00:00:00",
+      "end": "2026-09-19T00:00:00",
+      "allDay": true,
+      "location": ""
     },
     {
       "title": "FBI Firearms Instructor Course (Range 3) & classroom 2",
@@ -590,20 +590,6 @@
       "location": "Hall County Range"
     },
     {
-      "title": "Open Mat",
-      "start": "2026-09-25T00:00:00",
-      "end": "2026-09-26T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
-      "title": "Open Range",
-      "start": "2026-09-25T00:00:00",
-      "end": "2026-09-26T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
       "title": "FBI Range Day (Range 3)",
       "start": "2026-09-25T00:00:00",
       "end": "2026-09-26T00:00:00",
@@ -611,11 +597,25 @@
       "location": "Hall County Range"
     },
     {
+      "title": "Open Mat",
+      "start": "2026-09-25T00:00:00",
+      "end": "2026-09-26T00:00:00",
+      "allDay": true,
+      "location": ""
+    },
+    {
       "title": "FBI Firearms Instructor Course (Range 3)",
       "start": "2026-09-25T00:00:00",
       "end": "2026-09-26T00:00:00",
       "allDay": true,
       "location": "Hall County Range"
+    },
+    {
+      "title": "Open Range",
+      "start": "2026-09-25T00:00:00",
+      "end": "2026-09-26T00:00:00",
+      "allDay": true,
+      "location": ""
     },
     {
       "title": "FBI Firearms Instructor Course (Range 3) & classroom 2",
@@ -681,20 +681,6 @@
       "location": ""
     },
     {
-      "title": "Open Mat",
-      "start": "2026-10-02T00:00:00",
-      "end": "2026-10-03T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
-      "title": "Open Range",
-      "start": "2026-10-02T00:00:00",
-      "end": "2026-10-03T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
       "title": "FBI Range Day (Range 3)",
       "start": "2026-10-02T00:00:00",
       "end": "2026-10-03T00:00:00",
@@ -702,11 +688,25 @@
       "location": "Hall County Range"
     },
     {
+      "title": "Open Mat",
+      "start": "2026-10-02T00:00:00",
+      "end": "2026-10-03T00:00:00",
+      "allDay": true,
+      "location": ""
+    },
+    {
       "title": "FBI Firearms Instructor Course (Range 3)",
       "start": "2026-10-02T00:00:00",
       "end": "2026-10-03T00:00:00",
       "allDay": true,
       "location": "Hall County Range"
+    },
+    {
+      "title": "Open Range",
+      "start": "2026-10-02T00:00:00",
+      "end": "2026-10-03T00:00:00",
+      "allDay": true,
+      "location": ""
     },
     {
       "title": "FBI Firearms Instructor Course (Range 3) & classroom 2",
@@ -751,18 +751,18 @@
       "location": "Hall County Range"
     },
     {
-      "title": "Open Mat",
-      "start": "2026-10-09T00:00:00",
-      "end": "2026-10-10T00:00:00",
-      "allDay": true,
-      "location": ""
-    },
-    {
       "title": "FBI Range Day (Range 3)",
       "start": "2026-10-09T00:00:00",
       "end": "2026-10-10T00:00:00",
       "allDay": true,
       "location": "Hall County Range"
+    },
+    {
+      "title": "Open Mat",
+      "start": "2026-10-09T00:00:00",
+      "end": "2026-10-10T00:00:00",
+      "allDay": true,
+      "location": ""
     },
     {
       "title": "FBI Firearms Instructor Course (Range 3)",
