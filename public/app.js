@@ -54,7 +54,7 @@
     setInterval(refreshWeather, Math.max(config.refreshMinutes || 15, 5) * 60 * 1000);
     setInterval(refreshCalendar, Math.max(config.refreshMinutes || 15, 5) * 60 * 1000);
     setInterval(pixelShift, 5 * 60 * 1000);
-    setInterval(reloadPage, Math.max(config.pageReloadMinutes || 60, 15) * 60 * 1000);
+    schedulePageReload();
 
     window.addEventListener("keydown", function (event) {
       requestFullscreen();
@@ -70,6 +70,7 @@
     document.addEventListener("visibilitychange", function () {
       if (document.visibilityState === "visible") {
         requestWakeLock();
+        refreshCalendar();
       }
     });
   }
@@ -162,8 +163,10 @@
 
   function refreshCalendar() {
     var calendar = config.calendar || {};
+    var dataUrl = calendar.dataUrl || "./calendar-events.json";
+    var separator = dataUrl.indexOf("?") === -1 ? "?" : "&";
 
-    fetch(calendar.dataUrl || "./calendar-events.json", { cache: "no-store" })
+    fetch(dataUrl + separator + "t=" + Date.now(), { cache: "no-store" })
       .then(function (response) {
         if (!response.ok) {
           throw new Error("Calendar request failed");
@@ -181,7 +184,7 @@
   function renderCalendar(events) {
     var calendar = config.calendar || {};
     var now = new Date();
-    var visibleWeeks = calendar.visibleWeeks || 5;
+    var visibleWeeks = Math.max(Number(calendar.visibleWeeks) || 5, 3);
     var rangeStart = startOfWorkWeek(now);
     var rangeEnd = addDays(rangeStart, visibleWeeks * 7 - 3);
     rangeEnd.setHours(23, 59, 59, 999);
@@ -382,7 +385,22 @@
   }
 
   function reloadPage() {
-    window.location.reload();
+    var url = new URL(window.location.href);
+    url.searchParams.set("t", Date.now());
+    window.location.replace(url.toString());
+  }
+
+  function schedulePageReload() {
+    var now = new Date();
+    var reloadHour = Number.isFinite(config.pageReloadHour) ? config.pageReloadHour : 5;
+    var reloadMinute = Number.isFinite(config.pageReloadMinute) ? config.pageReloadMinute : 0;
+    var nextReload = new Date(now.getFullYear(), now.getMonth(), now.getDate(), reloadHour, reloadMinute);
+
+    if (nextReload <= now) {
+      nextReload.setDate(nextReload.getDate() + 1);
+    }
+
+    window.setTimeout(reloadPage, Math.max(nextReload - now, 1000));
   }
 
   function updateScreenMode() {

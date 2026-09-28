@@ -16,7 +16,7 @@ Bitcoin: `bc1q3anz5e7uflnwte4nr5ku836h98dgunwysz203j`
 - Current weather
 - Three-day forecast
 - Three rolling work weeks of public calendar events
-- Auto-refresh every hour, plus weather/calendar refreshes every 15 minutes
+- Full-page reload once daily at 5:00 AM Eastern, with weather and calendar data refreshed every 15 minutes
 - Wake Lock and fullscreen request on click/tap where the browser supports it
 - Subtle pixel shift for long-running displays
 - Slow in-cell scrolling when a calendar day has more events than fit on screen

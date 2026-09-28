@@ -2,7 +2,8 @@ name: Update public calendar data
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "45 4 * * *"
+      timezone: "America/New_York"
   workflow_dispatch:
   push:
     paths:
